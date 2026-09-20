@@ -1,5 +1,5 @@
 from pathlib import Path
-
+import zipfile
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -34,8 +34,31 @@ import matplotlib.pyplot as plt
 BASE_DIR = Path(__file__).resolve().parent
 
 SET_A_DIR = BASE_DIR / "set-a"
+SET_A_ZIP = BASE_DIR / "set-a.zip"
 OUTCOME_FILE = BASE_DIR / "Outcomes-a.txt"
 
+# Automatically extract set-a.zip if set-a/ does not exist
+if not SET_A_DIR.exists():
+
+    if SET_A_ZIP.exists():
+
+        print("set-a directory not found.")
+        print("Extracting set-a.zip...")
+
+        with zipfile.ZipFile(SET_A_ZIP, "r") as zip_ref:
+            zip_ref.extractall(BASE_DIR)
+
+        print("Extraction complete.")
+
+    else:
+
+        raise FileNotFoundError(
+            "Neither set-a/ nor set-a.zip was found."
+        )
+
+# Output folder
+OUTPUT_DIR = BASE_DIR / "output"
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # ============================================================
 # 2. READ OUTCOME DATA
@@ -628,7 +651,7 @@ print(
 # ============================================================
 
 table1.to_csv(
-    "Table1.csv",
+    OUTPUT_DIR / "Table1.csv",
     index=False
 )
 
@@ -1031,7 +1054,7 @@ print(
 # ============================================================
 
 outcome_summary.to_csv(
-    "Outcome_summary.csv",
+    OUTPUT_DIR / "Outcome_summary.csv",
     index=False
 )
 
@@ -1430,7 +1453,7 @@ print(
 
 
 missing_summary.to_csv(
-    "Missingness_summary.csv",
+    OUTPUT_DIR / "Missingness_summary.csv",
     index=False
 )
 
@@ -1540,7 +1563,7 @@ plt.tight_layout()
 # ============================================================
 
 plt.savefig(
-    "Missingness_map.png",
+    OUTPUT_DIR / "Missingness_map.png",
     dpi=300,
     bbox_inches="tight"
 )
