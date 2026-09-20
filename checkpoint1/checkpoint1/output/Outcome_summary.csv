@@ -1,0 +1,10 @@
+Outcome,N,Missing n (%),Mean (SD),"Median (Q1, Q3)",Min-Max
+SAPS-I,3810,190 (4.8%),14.96 (5.18),"15.00 (11.00, 19.00)",1 to 34
+SOFA,3856,144 (3.6%),6.68 (4.02),"7.00 (3.00, 9.00)",0 to 22
+"Length of stay, days",3940,60 (1.5%),13.66 (12.21),"10.00 (6.00, 17.00)",1 to 154
+In-hospital death,,0 (0.0%),,,
+    In-hospital survival,3446 (86.15%),,,,
+    In-hospital death,554 (13.85%),,,,
+Survival time,,,,,
+    No recorded survival time (-1),2526 (63.15%),,,,
+    Recorded survival time,1474 (36.85%),,351.06 (529.92),"70.00 (10.25, 479.00)",0 to 2600
