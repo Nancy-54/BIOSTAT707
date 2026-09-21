@@ -1,0 +1,4 @@
+data/
+output/
+.pixi/
+__pycache__/
